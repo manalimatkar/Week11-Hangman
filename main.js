@@ -31,33 +31,33 @@ var prompt = require("prompt");
 prompt.start();
 
 var letsPlay = {
-	continue : true, 
-	keepPromptingUser: function(){
-		var self = this; 	
-		//If number of attems is greater then 0 and continue is true keep prompting user	
-		if(numAttempts > 0 && self.continue == true) {
-			prompt.get(['guessLetter'], function(err, result) {
-				var guessLetter = result.guessLetter;
-				//Create display options object and call checkLetter method to check if letter exist in the word 
-				var display = new displayOption(guessLetter,guessWordArr,placeLettersArr);
-				var gameStatus = display.checkLetter();
-				//check gameStatus to see if there are more letters to be guessed
-				self.continue = gameStatus;
-				//reduce the attempt num by one
-				numAttempts--;
-				console.log("Number of Attemps left :::" + numAttempts);
-				self.keepPromptingUser();
-			});
-		}else {
-				//If there are letters to be guessed but number of attempts left is zero its game over
-				if(self.continue){
-					if(numAttempts == 0){
-						console.log("You ran out of number of guesses, YOU LOOSE!!");
-					}
-				}
-				console.log("Lets Play Again");
-		}
-	}
+    continue: true,
+    keepPromptingUser: function() {
+        var self = this;
+        //If number of attems is greater then 0 and continue is true keep prompting user	
+        if (numAttempts > 0 && self.continue == true) {
+            prompt.get(['guessLetter'], function(err, result) {
+                var guessLetter = result.guessLetter;
+                //Create display options object and call checkLetter method to check if letter exist in the word 
+                var display = new displayOption(guessLetter, guessWordArr, placeLettersArr);
+                var gameStatus = display.checkLetter();
+                //check gameStatus to see if there are more letters to be guessed
+                self.continue = gameStatus;
+                //reduce the attempt num by one
+                numAttempts--;
+                console.log("Number of Attemps left :::" + numAttempts);
+                self.keepPromptingUser();
+            });
+        } else {
+            //If there are letters to be guessed but number of attempts left is zero its game over
+            if (self.continue) {
+                if (numAttempts == 0) {
+                    console.log("You ran out of number of guesses, YOU LOOSE!!");
+                }
+            }
+            console.log("Lets Play Again");
+        }
+    }
 }
 
 //Keep prompting user
@@ -68,4 +68,3 @@ letsPlay.keepPromptingUser();
 
 
 // prompt.start();
-
